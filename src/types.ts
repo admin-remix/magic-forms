@@ -7,7 +7,7 @@ export enum MagicFormType {
 export interface MagicInitParams {
   formType: MagicFormType;
   graphqlEndpoint: string;
-  graphqlHeaders: Headers;
+  graphqlHeaders?: Headers;
 }
 
 export interface MagicBuildOptions {
