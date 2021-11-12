@@ -4,20 +4,23 @@
   "description": "Magic Forms is used to auto generate form schema data based on a GraphQL introspection data call",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "lint:fix": "ts-standard --fix",
     "lint:check": "ts-standard --check",
+    "test": "jest",
     "build": "npm run lint:check && rimraf ./dist && npm run tsc"
   },
   "keywords": [],
   "author": "AdminRemix LLC",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.11.7",
     "husky": "^7.0.4",
+    "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
     "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
     "ts-standard": "^10.0.0",
     "typescript": "^4.4.4"
   },
