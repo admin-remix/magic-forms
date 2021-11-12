@@ -14,7 +14,7 @@ export interface MagicBuildOptions {
   includeFields?: string[];
   excludeFields?: string[];
   // TODO: This needs to be flushed out
-  includeLogicToField: string[];
+  includeLogicToField?: string[];
 }
 
 export type MagicIntroSpectionData = any;

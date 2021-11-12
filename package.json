@@ -14,12 +14,15 @@
   "author": "AdminRemix LLC",
   "license": "MIT",
   "devDependencies": {
+    "@pollyjs/core": "^5.1.1",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.7",
+    "@types/setup-polly-jest": "^0.5.1",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
     "rimraf": "^3.0.2",
+    "setup-polly-jest": "^0.10.0",
     "ts-jest": "^27.0.7",
     "ts-standard": "^10.0.0",
     "typescript": "^4.4.4"

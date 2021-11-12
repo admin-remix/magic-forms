@@ -25,7 +25,104 @@ export class MagicForm {
    *  TODO:
    *    Need to write the into query
    */
-  private introQuery = gql``;
+  private introQuery = gql`
+    query IntrospectionQuery {
+      __schema {
+        queryType {
+          name
+        }
+        mutationType {
+          name
+        }
+        subscriptionType {
+          name
+        }
+        types {
+          ...FullType
+        }
+        directives {
+          name
+          description
+          locations
+          args {
+            ...InputValue
+          }
+        }
+      }
+    }
+    fragment FullType on __Type {
+      kind
+      name
+      description
+      fields(includeDeprecated: true) {
+        name
+        description
+        args {
+          ...InputValue
+        }
+        type {
+          ...TypeRef
+        }
+        isDeprecated
+        deprecationReason
+      }
+      inputFields {
+        ...InputValue
+      }
+      interfaces {
+        ...TypeRef
+      }
+      enumValues(includeDeprecated: true) {
+        name
+        description
+        isDeprecated
+        deprecationReason
+      }
+      possibleTypes {
+        ...TypeRef
+      }
+    }
+    fragment InputValue on __InputValue {
+      name
+      description
+      type {
+        ...TypeRef
+      }
+      defaultValue
+    }
+    fragment TypeRef on __Type {
+      kind
+      name
+      ofType {
+        kind
+        name
+        ofType {
+          kind
+          name
+          ofType {
+            kind
+            name
+            ofType {
+              kind
+              name
+              ofType {
+                kind
+                name
+                ofType {
+                  kind
+                  name
+                  ofType {
+                    kind
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
 
   private async getIntrospection() {
     if (this.introspectionData) {
@@ -33,11 +130,6 @@ export class MagicForm {
     }
     const data = await this.client.request(this.introQuery);
     if (data) {
-      /**
-       * TODO:
-       *  Need to find out the shape of the data
-       */
-      console.log(data);
       this.introspectionData = data;
       return this.introspectionData;
     }
@@ -77,7 +169,7 @@ export class MagicForm {
    *    By default leaving exclude fields empty will exclude no fields
    * @returns
    */
-  async magicBuild(inputTypeName: string, options: MagicBuildOptions) {
+  async magicBuild(inputTypeName: string, options: MagicBuildOptions = {}) {
     const introData = await this.getIntrospection();
     switch (this.formType) {
       case MagicFormType.FORM_VUE_LATE:
