@@ -1,7 +1,7 @@
 {
-  "name": "magic-forms",
+  "name": "@admin-remix/magic-forms",
   "version": "1.0.0",
-  "description": "",
+  "description": "About Magic Forms is used to auto generate form schema data based on a GraphQL introspection data call",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,8 +11,8 @@
     "build": "npm run lint:check && rimraf ./dist && npm run tsc"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "AdminRemix LLC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^16.11.7",
     "husky": "^7.0.4",
@@ -37,5 +37,13 @@
   "dependencies": {
     "graphql": "^16.0.1",
     "graphql-request": "^3.6.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/admin-remix/magic-forms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/admin-remix/magic-forms/issues"
+  },
+  "homepage": "https://github.com/admin-remix/magic-forms#readme"
 }
