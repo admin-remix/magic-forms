@@ -1,0 +1,34 @@
+{
+  "name": "magic-forms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "lint:fix": "ts-standard --fix",
+    "lint:check": "ts-standard --check",
+    "build": "npm run lint:check && rimraf ./dist && npm run tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "rimraf": "^3.0.2",
+    "ts-standard": "^10.0.0",
+    "typescript": "^4.4.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*": [
+      "npm run lint:check"
+    ]
+  }
+}
