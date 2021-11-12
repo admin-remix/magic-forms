@@ -1,10 +1,17 @@
 import { GraphQLClient, gql } from "graphql-request";
-import { MagicBuildOptions, MagicFormType, MagicInitParams } from "./types";
+import { magicBuildFormVueLateStandAlone } from "./methods/magicBuildFormVueLate";
+import { magicBuildVueDynamicFormsStandAlone } from "./methods/magicBuildVueDynamicForms";
+import {
+  MagicBuildOptions,
+  MagicFormType,
+  MagicInitParams,
+  MagicIntroSpectionData,
+} from "./types";
 
 export class MagicForm {
   private formType: MagicFormType;
   private graphqlEndpoint: string;
-  private introspectionData: null | any;
+  private introspectionData: null | MagicIntroSpectionData;
   private client: GraphQLClient;
 
   constructor(init: MagicInitParams) {
@@ -28,7 +35,7 @@ export class MagicForm {
     if (data) {
       /**
        * TODO:
-       *  Need to find out the shape of the data and break up logic
+       *  Need to find out the shape of the data
        */
       console.log(data);
       this.introspectionData = data;
@@ -39,33 +46,37 @@ export class MagicForm {
   private async magicBuildFormVueLate(
     inputTypeName: string,
     options: MagicBuildOptions,
-    introData: any
+    introData: MagicIntroSpectionData
   ) {
-    console.log({ inputTypeName, options, introData });
-    /**
-     * TODO:
-     *  Need to determine FormVueLate custom logic
-     *  Each method will live in a logic folder and be exported
-     *  This will allow a caller with intro data to inject it in
-     */
-    return `TODO`;
+    return await magicBuildFormVueLateStandAlone(
+      inputTypeName,
+      options,
+      introData
+    );
   }
 
   private async magicBuildVueDynamicForms(
     inputTypeName: string,
     options: MagicBuildOptions,
-    introData: any
+    introData: MagicIntroSpectionData
   ) {
-    console.log({ inputTypeName, options, introData });
-    /**
-     * TODO:
-     *  Need to determine Vue Dynamic Forms custom logic
-     *  Each method will live in a logic folder and be exported
-     *  This will allow a caller with intro data to inject it in
-     */
-    return `TODO`;
+    return await magicBuildVueDynamicFormsStandAlone(
+      inputTypeName,
+      options,
+      introData
+    );
   }
 
+  /**
+   * @description
+   * @param inputTypeName
+   * @param options
+   *  options.includeFields
+   *    By default leaving include fields empty will return all fields
+   *  options.excludeFields
+   *    By default leaving exclude fields empty will exclude no fields
+   * @returns
+   */
   async magicBuild(inputTypeName: string, options: MagicBuildOptions) {
     const introData = await this.getIntrospection();
     switch (this.formType) {
