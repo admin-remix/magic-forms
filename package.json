@@ -1,7 +1,7 @@
 {
   "name": "@admin-remix/magic-forms",
   "version": "0.0.1",
-  "description": "About Magic Forms is used to auto generate form schema data based on a GraphQL introspection data call",
+  "description": "Magic Forms is used to auto generate form schema data based on a GraphQL introspection data call",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
