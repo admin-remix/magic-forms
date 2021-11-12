@@ -4,7 +4,7 @@
 
 ## Description
 
-The goal of the Magic Forms will be to generate form schema with the help of Graphql introspection. This is the generalization & V2 of a tool that AdminRemix built internal to speed up software development of AssetRemix. We hope that this tool can support many other teams in the future.
+The goal of the Magic Forms will be to generate form schema with the help of GraphQL introspection. This is a generalization & V2 of a tool that [AdminRemix](https://adminremix.com) built internal to speed up software development of AssetRemix. V1 of this concept was a britle internal tool that had very limited power and was hard to expand with edge cases that broke the system. V2 of the sytem will leverage current popular form builder shcemas and take insperation from [Frontier Forms](https://github.com/frontier-forms/frontier-forms). We hope that this tool can support many other teams in the future.
 
 ## Init Class
 
