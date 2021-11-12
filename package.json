@@ -21,6 +21,9 @@
     "ts-standard": "^10.0.0",
     "typescript": "^4.4.4"
   },
+  "engines": {
+    "node": ">12.0.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -30,5 +33,9 @@
     "**/*": [
       "npm run lint:check"
     ]
+  },
+  "dependencies": {
+    "graphql": "^16.0.1",
+    "graphql-request": "^3.6.1"
   }
 }
