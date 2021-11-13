@@ -136,24 +136,24 @@ export class MagicForm {
   }
 
   private async magicBuildFormVueLate(
-    inputTypeName: string,
+    mutationName: string,
     options: MagicBuildOptions,
     introData: MagicIntroSpectionData
   ) {
     return await magicBuildFormVueLateStandAlone(
-      inputTypeName,
+      mutationName,
       options,
       introData
     );
   }
 
   private async magicBuildVueDynamicForms(
-    inputTypeName: string,
+    mutationName: string,
     options: MagicBuildOptions,
     introData: MagicIntroSpectionData
   ) {
     return await magicBuildVueDynamicFormsStandAlone(
-      inputTypeName,
+      mutationName,
       options,
       introData
     );
@@ -169,18 +169,18 @@ export class MagicForm {
    *    By default leaving exclude fields empty will exclude no fields
    * @returns
    */
-  async magicBuild(inputTypeName: string, options: MagicBuildOptions = {}) {
+  async magicBuild(mutationName: string, options: MagicBuildOptions = {}) {
     const introData = await this.getIntrospection();
     switch (this.formType) {
       case MagicFormType.FORM_VUE_LATE:
         return await this.magicBuildFormVueLate(
-          inputTypeName,
+          mutationName,
           options,
           introData
         );
       case MagicFormType.VUE_DYNAMIC_FORMS:
         return await this.magicBuildVueDynamicForms(
-          inputTypeName,
+          mutationName,
           options,
           introData
         );

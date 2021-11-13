@@ -1,11 +1,10 @@
 import { MagicForm } from "../src";
 import { MagicFormType } from "../src/types";
-import { setupPolly } from "setup-polly-jest";
 
+// TODO: Record and make this general
 const graphqlEndpoint = "https://back-end-6n643qmf2a-uc.a.run.app";
 
 describe("Magic Forms Base Test", () => {
-  let context = setupPolly();
   it("class will construct with form vue late type", () => {
     const magic = new MagicForm({
       formType: MagicFormType.FORM_VUE_LATE,
@@ -21,12 +20,11 @@ describe("Magic Forms Base Test", () => {
     expect(magic).toBeTruthy();
   });
   it("returns build data for vue late form", async () => {
-    context.polly.configure({ recordIfMissing: true });
     const magic = new MagicForm({
       formType: MagicFormType.FORM_VUE_LATE,
       graphqlEndpoint,
     });
-    const data = await magic.magicBuild("NewAssetModelInput");
+    const data = await magic.magicBuild("createAsset");
     expect(data).toBeTruthy();
   });
 });
