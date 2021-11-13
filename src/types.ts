@@ -45,13 +45,6 @@ export interface MagicBuildOptions {
   displayNameCorrection?: MagicBuildOptionsDisplayNameCorrection[];
   configToField?: MagicBuildOptionsConfigToField[];
   remapField?: MagicBuildOptionsRemapField[];
-  // TODO: this should NOT be optional
-  schemaMapping?: any; // Need to build out the schema mapping
-  /**
-   * String: FormText | 'FormText',
-   * This could be a string or the entire component...
-   * need to build out an enum for this input
-   */
 }
 
 export type MagicIntroSpectionData = any;
