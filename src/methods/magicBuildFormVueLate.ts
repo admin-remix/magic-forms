@@ -28,7 +28,7 @@ export async function magicBuildFormVueLateStandAlone(
         break;
       case MagicIntrospectionKind.NON_NULL:
         acc[current.name] = {
-          component: "UNKNOWN",
+          component: current.type.ofType?.name ?? "UNKNOWN",
           label: capitalCase(current.name),
           required: true,
         };
