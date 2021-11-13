@@ -15,11 +15,15 @@ export interface MagicBuildOptionsDisplayNameCorrection {
   correction: string;
 }
 
+export interface MagicBuildOptionsConfigToField {
+  fieldName: string;
+  config: any;
+}
+
 export interface MagicBuildOptions {
   excludeFields?: string[];
   displayNameCorrection?: MagicBuildOptionsDisplayNameCorrection[];
-  // TODO: This needs to be flushed out
-  includeLogicToField?: string[];
+  configToField?: MagicBuildOptionsConfigToField[];
   // TODO: this should NOT be optional
   schemaMapping?: any; // Need to build out the schema mapping
   /**

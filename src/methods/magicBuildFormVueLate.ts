@@ -18,19 +18,37 @@ export async function magicBuildFormVueLateStandAlone(
       ? excludeBuilder(options.excludeFields, allFields)
       : allFields;
   const form = fieldsWithExclusions.reduce((acc: any, current) => {
+    const hasNameCorrection =
+      options.displayNameCorrection && options.displayNameCorrection.length
+        ? options.displayNameCorrection.find(
+            (i) => i.fieldName.toLowerCase() === current.name.toLowerCase()
+          )
+        : null;
+    const hasConfigOptions =
+      options.configToField && options.configToField.length
+        ? options.configToField.find(
+            (i) => i.fieldName.toLowerCase() === current.name.toLowerCase()
+          )
+        : null;
     const scalar = current.type.kind;
     switch (scalar) {
       case MagicIntrospectionKind.SCALAR:
         acc[current.name] = {
           component: current.type.name,
-          label: capitalCase(current.name),
+          label: hasNameCorrection
+            ? hasNameCorrection.correction
+            : capitalCase(current.name),
+          ...hasConfigOptions?.config,
         };
         break;
       case MagicIntrospectionKind.NON_NULL:
         acc[current.name] = {
           component: current.type.ofType?.name ?? "UNKNOWN",
-          label: capitalCase(current.name),
+          label: hasNameCorrection
+            ? hasNameCorrection.correction
+            : capitalCase(current.name),
           required: true,
+          ...hasConfigOptions?.config,
         };
         break;
       default:
