@@ -19,21 +19,21 @@ export async function magicBuildFormVueLateStandAlone(
       : allFields;
   const form = fieldsWithExclusions.reduce((acc: any, current) => {
     const hasNameCorrection =
-      options.displayNameCorrection && options.displayNameCorrection.length
+      options?.displayNameCorrection && options.displayNameCorrection.length
         ? options.displayNameCorrection.find(
             (i) => i.fieldName.toLowerCase() === current.name.toLowerCase()
           )
         : null;
     const hasConfigOptions =
-      options.configToField && options.configToField.length
+      options?.configToField && options.configToField.length
         ? options.configToField.find(
             (i) => i.fieldName.toLowerCase() === current.name.toLowerCase()
           )
         : null;
     const shouldRemapField =
-      options.remapField && options.remapField.length
+      options?.remapField && options.remapField.length
         ? options.remapField.find(
-            (i) => i.fieldName.toLowerCase() === current.name
+            (i) => i.fieldName.toLowerCase() === current.name.toLowerCase()
           )
         : null;
     const scalar = current.type.kind;
@@ -48,7 +48,7 @@ export async function magicBuildFormVueLateStandAlone(
               ...hasConfigOptions?.config,
             }
           : {
-              ...shouldRemapField.options.config,
+              ...shouldRemapField.options,
             };
         break;
       case MagicIntrospectionKind.NON_NULL:
@@ -62,7 +62,7 @@ export async function magicBuildFormVueLateStandAlone(
               ...hasConfigOptions?.config,
             }
           : {
-              ...shouldRemapField.options.config,
+              ...shouldRemapField.options,
             };
         break;
       default:

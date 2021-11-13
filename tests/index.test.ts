@@ -46,4 +46,25 @@ describe("Magic Forms Base Test", () => {
     });
     expect(data).toBeTruthy();
   });
+  it("return build data for vue late form with remapField", async () => {
+    const magic = new MagicForm({
+      formType: MagicFormType.FORM_VUE_LATE,
+      graphqlEndpoint,
+    });
+    const data = await magic.magicBuild("createAsset", {
+      remapField: [
+        {
+          fieldName: "statusLabelId",
+          options: {
+            component: "DropDown",
+            label: "Status Label",
+            config: {
+              options: ["one", "two"],
+            },
+          },
+        },
+      ],
+    });
+    expect(data).toBeTruthy();
+  });
 });

@@ -30,15 +30,12 @@ export interface MagicBuildOptionsConfigToField {
 interface MagicBuildOptionsRemapFieldConfig {
   component: string;
   label: string;
+  config: MagicBuildOptionsConfigToFieldConfig;
 }
 
 export interface MagicBuildOptionsRemapField {
   fieldName: string;
-  options: {
-    fieldName: string;
-    config: MagicBuildOptionsRemapFieldConfig &
-      MagicBuildOptionsConfigToFieldConfig;
-  };
+  options: MagicBuildOptionsRemapFieldConfig;
 }
 
 export interface MagicBuildOptions {
