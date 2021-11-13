@@ -15,16 +15,28 @@ export interface MagicBuildOptionsDisplayNameCorrection {
   correction: string;
 }
 
+interface MagicBuildOptionsConfigToFieldConfig {
+  options?: string[];
+  config?: { type: string };
+  required?: boolean;
+}
+
 export interface MagicBuildOptionsConfigToField {
   fieldName: string;
-  config: any;
+  config: MagicBuildOptionsConfigToFieldConfig;
+}
+
+interface MagicBuildOptionsRemapFieldConfig {
+  component: string;
+  label: string;
 }
 
 export interface MagicBuildOptionsRemapField {
   fieldName: string;
   options: {
     fieldName: string;
-    config: any;
+    config: MagicBuildOptionsRemapFieldConfig &
+      MagicBuildOptionsConfigToFieldConfig;
   };
 }
 

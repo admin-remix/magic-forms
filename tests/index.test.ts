@@ -37,7 +37,9 @@ describe("Magic Forms Base Test", () => {
         {
           fieldName: "notes",
           config: {
-            test: "one",
+            config: {
+              type: "email",
+            },
           },
         },
       ],
