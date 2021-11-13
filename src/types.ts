@@ -8,6 +8,13 @@ export interface MagicInitParams {
   formType: MagicFormType;
   graphqlEndpoint: string;
   graphqlHeaders?: Headers;
+  // TODO: this should NOT be optional
+  schemaMapping?: any; // Need to build out the schema mapping
+  /**
+   * String: 'FormText',
+   * etc...
+   * need to build out an enum for this input
+   */
 }
 
 export interface MagicBuildOptionsDisplayNameCorrection {
