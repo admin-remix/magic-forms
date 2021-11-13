@@ -10,8 +10,14 @@ export interface MagicInitParams {
   graphqlHeaders?: Headers;
 }
 
+export interface MagicBuildOptionsDisplayNameCorrection {
+  fieldName: string;
+  correction: string;
+}
+
 export interface MagicBuildOptions {
   excludeFields?: string[];
+  displayNameCorrection?: MagicBuildOptionsDisplayNameCorrection[];
   // TODO: This needs to be flushed out
   includeLogicToField?: string[];
 }
