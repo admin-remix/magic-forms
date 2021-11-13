@@ -19,6 +19,7 @@ interface MagicBuildOptionsConfigToFieldConfig {
   options?: string[];
   config?: { type: string };
   required?: boolean;
+  important?: boolean;
 }
 
 export interface MagicBuildOptionsConfigToField {
