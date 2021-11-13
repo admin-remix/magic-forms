@@ -20,10 +20,19 @@ export interface MagicBuildOptionsConfigToField {
   config: any;
 }
 
+export interface MagicBuildOptionsRemapField {
+  fieldName: string;
+  options: {
+    fieldName: string;
+    config: any;
+  };
+}
+
 export interface MagicBuildOptions {
   excludeFields?: string[];
   displayNameCorrection?: MagicBuildOptionsDisplayNameCorrection[];
   configToField?: MagicBuildOptionsConfigToField[];
+  remapField?: MagicBuildOptionsRemapField[];
   // TODO: this should NOT be optional
   schemaMapping?: any; // Need to build out the schema mapping
   /**

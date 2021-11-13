@@ -1,4 +1,4 @@
-import { capitalCase } from "capital-case";
+import { capitalCase, camelCase } from "change-case";
 import {
   MagicBuildOptions,
   MagicIntroSpectionData,
@@ -30,32 +30,50 @@ export async function magicBuildFormVueLateStandAlone(
             (i) => i.fieldName.toLowerCase() === current.name.toLowerCase()
           )
         : null;
+    const shouldRemapField =
+      options.remapField && options.remapField.length
+        ? options.remapField.find(
+            (i) => i.fieldName.toLowerCase() === current.name
+          )
+        : null;
     const scalar = current.type.kind;
     switch (scalar) {
       case MagicIntrospectionKind.SCALAR:
-        acc[current.name] = {
-          component: current.type.name,
-          label: hasNameCorrection
-            ? hasNameCorrection.correction
-            : capitalCase(current.name),
-          ...hasConfigOptions?.config,
-        };
+        if (!shouldRemapField) {
+          acc[current.name] = {
+            component: current.type.name,
+            label: hasNameCorrection
+              ? hasNameCorrection.correction
+              : capitalCase(current.name),
+            ...hasConfigOptions?.config,
+          };
+        } else {
+          acc[camelCase(shouldRemapField.options.fieldName)] = {
+            ...shouldRemapField.options.config,
+          };
+        }
         break;
       case MagicIntrospectionKind.NON_NULL:
-        acc[current.name] = {
-          component: current.type.ofType?.name ?? "UNKNOWN",
-          label: hasNameCorrection
-            ? hasNameCorrection.correction
-            : capitalCase(current.name),
-          required: true,
-          ...hasConfigOptions?.config,
-        };
+        if (!shouldRemapField) {
+          acc[current.name] = {
+            component: current.type.ofType?.name ?? "UNKNOWN",
+            label: hasNameCorrection
+              ? hasNameCorrection.correction
+              : capitalCase(current.name),
+            required: true,
+            ...hasConfigOptions?.config,
+          };
+        } else {
+          acc[camelCase(shouldRemapField.options.fieldName)] = {
+            ...shouldRemapField.options.config,
+          };
+        }
         break;
       default:
         throw new Error(`Unknown scalar type ${scalar}`);
     }
     return acc;
   }, {});
-  console.log({ form });
-  return `TODO`;
+  console.log(form);
+  return form;
 }

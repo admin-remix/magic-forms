@@ -19,12 +19,29 @@ describe("Magic Forms Base Test", () => {
     });
     expect(magic).toBeTruthy();
   });
-  it("returns build data for vue late form", async () => {
+  it("returns build data for vue late form with no options", async () => {
     const magic = new MagicForm({
       formType: MagicFormType.FORM_VUE_LATE,
       graphqlEndpoint,
     });
     const data = await magic.magicBuild("createAsset");
+    expect(data).toBeTruthy();
+  });
+  it("return build data for vue late form with options", async () => {
+    const magic = new MagicForm({
+      formType: MagicFormType.FORM_VUE_LATE,
+      graphqlEndpoint,
+    });
+    const data = await magic.magicBuild("createAsset", {
+      configToField: [
+        {
+          fieldName: "notes",
+          config: {
+            test: "one",
+          },
+        },
+      ],
+    });
     expect(data).toBeTruthy();
   });
 });
