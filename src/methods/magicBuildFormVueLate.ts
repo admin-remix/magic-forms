@@ -1,5 +1,6 @@
 import { MagicBuildOptions, MagicIntroSpectionData } from "../types";
 import { getAllFormFields } from "./utils/getAllFormFields";
+import { excludeBuilder } from "./utils/magicOptionsTools";
 
 export async function magicBuildFormVueLateStandAlone(
   mutationName: string,
@@ -7,28 +8,10 @@ export async function magicBuildFormVueLateStandAlone(
   introData: MagicIntroSpectionData
 ) {
   const allFields = getAllFormFields(mutationName, introData);
-  /**
-   *     {
-      args: [
-        {
-          name: 'data',
-          description: null,
-          type: [Object],
-          defaultValue: null
-        }
-      ]
-    }
-
-        {
-      argType: {
-        kind: 'NON_NULL',
-        name: null,
-        ofType: { kind: 'INPUT_OBJECT', name: 'NewAssetInput', ofType: null }
-      }
-    }
-
-   */
-  console.log({ allFields });
-  console.log({ options });
+  const fieldsWithExclusions =
+    options.excludeFields && options.excludeFields.length
+      ? excludeBuilder(options.excludeFields, allFields)
+      : allFields;
+  console.log({ fieldsWithExclusions });
   return `TODO`;
 }
