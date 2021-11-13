@@ -1,35 +1,12 @@
-import {
-  MagicBuildOptions,
-  MagicIntrospectionArgs,
-  MagicIntroSpectionData,
-  MagicIntrospectionKind,
-  MagicIntrospectionType,
-} from "../types";
-import { matchedMutationFinder, matchedObjectInputFinder } from "./utils";
+import { MagicBuildOptions, MagicIntroSpectionData } from "../types";
+import { getAllFormFields } from "./utils/getAllFormFields";
 
 export async function magicBuildFormVueLateStandAlone(
   mutationName: string,
   options: MagicBuildOptions,
   introData: MagicIntroSpectionData
 ) {
-  const matchedQuery = matchedMutationFinder(mutationName, introData);
-  const args = matchedQuery.args;
-  const allFields = args.reduce((acc: MagicIntrospectionArgs[], current) => {
-    const isScalar = current.type.kind === MagicIntrospectionKind.SCALAR;
-    if (isScalar) {
-      acc.push(current);
-    } else {
-      const typeNeeded = current.type.ofType?.name;
-      if (!typeNeeded) {
-        throw new Error(
-          `typeNeeded for ${current.type.name} did not have a known ofType`
-        );
-      }
-      const matchedInput = matchedObjectInputFinder(typeNeeded, introData);
-      acc.push(...matchedInput.inputFields);
-    }
-    return acc;
-  }, []);
+  const allFields = getAllFormFields(mutationName, introData);
   /**
    *     {
       args: [

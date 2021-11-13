@@ -1,8 +1,4 @@
-import {
-  MagicIntroSpectionData,
-  MagicMatchedInput,
-  MagicMatchedMutation,
-} from "../types";
+import { MagicIntroSpectionData, MagicMatchedMutation } from "../../types";
 
 export function matchedMutationFinder(
   mutationName: string,
@@ -21,17 +17,4 @@ export function matchedMutationFinder(
     throw new Error(`Unable to find matched query: ${mutationName}`);
   }
   return matchedQuery;
-}
-
-export function matchedObjectInputFinder(
-  inputName: string,
-  introData: MagicIntroSpectionData
-): MagicMatchedInput {
-  const inputObject = introData.__schema.types.find(
-    (i: { name: string }) => i.name.toLowerCase() === inputName.toLowerCase()
-  );
-  if (!inputObject) {
-    throw new Error(`Unable to find ${inputName} name on introspection call`);
-  }
-  return inputObject;
 }
