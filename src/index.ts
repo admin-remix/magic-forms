@@ -21,10 +21,7 @@ export class MagicForm {
       headers: init.graphqlHeaders,
     });
   }
-  /**
-   *  TODO:
-   *    Need to write the into query
-   */
+
   private introQuery = gql`
     query IntrospectionQuery {
       __schema {
