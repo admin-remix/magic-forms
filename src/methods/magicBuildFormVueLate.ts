@@ -39,35 +39,31 @@ export async function magicBuildFormVueLateStandAlone(
     const scalar = current.type.kind;
     switch (scalar) {
       case MagicIntrospectionKind.SCALAR:
-        if (!shouldRemapField) {
-          acc[current.name] = {
-            component: current.type.name,
-            label: hasNameCorrection
-              ? hasNameCorrection.correction
-              : capitalCase(current.name),
-            ...hasConfigOptions?.config,
-          };
-        } else {
-          acc[camelCase(shouldRemapField.options.fieldName)] = {
-            ...shouldRemapField.options.config,
-          };
-        }
+        acc[current.name] = !shouldRemapField
+          ? {
+              component: current.type.name,
+              label: hasNameCorrection
+                ? hasNameCorrection.correction
+                : capitalCase(current.name),
+              ...hasConfigOptions?.config,
+            }
+          : {
+              ...shouldRemapField.options.config,
+            };
         break;
       case MagicIntrospectionKind.NON_NULL:
-        if (!shouldRemapField) {
-          acc[current.name] = {
-            component: current.type.ofType?.name ?? "UNKNOWN",
-            label: hasNameCorrection
-              ? hasNameCorrection.correction
-              : capitalCase(current.name),
-            required: true,
-            ...hasConfigOptions?.config,
-          };
-        } else {
-          acc[camelCase(shouldRemapField.options.fieldName)] = {
-            ...shouldRemapField.options.config,
-          };
-        }
+        acc[current.name] = !shouldRemapField
+          ? {
+              component: current.type.ofType?.name ?? "UNKNOWN",
+              label: hasNameCorrection
+                ? hasNameCorrection.correction
+                : capitalCase(current.name),
+              required: true,
+              ...hasConfigOptions?.config,
+            }
+          : {
+              ...shouldRemapField.options.config,
+            };
         break;
       default:
         throw new Error(`Unknown scalar type ${scalar}`);
