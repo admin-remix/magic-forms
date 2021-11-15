@@ -12,7 +12,16 @@ The goal of the Magic Forms will be to generate form schema with the help of Gra
 
 ## Init Class
 
-TODO: Example of how to init the MagicForm class
+Magic Forms export multiple types and methods but the fastest way to get started is import the base class. See below.
+
+```js
+import { MagicForm, MagicFormType } from '@admin-remix/magic-form';
+
+const magic = new MagicForm({
+  formType: MagicFormType.FORM_VUE_LATE // or any other enum from MagicFormType
+  graphqlEndpoint: 'https://graphqlserver.com'
+})
+```
 
 ## Using
 
