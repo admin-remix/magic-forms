@@ -17,11 +17,13 @@ Magic Forms export multiple types and methods but the fastest way to get started
 ```js
 import { MagicForm, MagicFormType } from '@admin-remix/magic-form';
 
-const magic = new MagicForm({
+export const magic = new MagicForm({
   formType: MagicFormType.FORM_VUE_LATE // or any other enum from MagicFormType
   graphqlEndpoint: 'https://graphqlserver.com'
 })
 ```
+
+We recommend that you initialize Magic Forms and import where needed over a new class in every file. By doing this you can take advantage of Introspection caching.
 
 ## Using
 
