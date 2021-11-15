@@ -1,4 +1,4 @@
-import { capitalCase, camelCase } from "change-case";
+import { capitalCase } from "change-case";
 import {
   MagicBuildOptions,
   MagicIntroSpectionData,
